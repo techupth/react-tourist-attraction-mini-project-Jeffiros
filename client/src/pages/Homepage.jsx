@@ -29,6 +29,7 @@ function HomePage() {
   const handleAddTag = (tag) => {
     const newText = searchText ? `${searchText} ${tag}` : tag;
     setText(newText);
+    // setText(searchText + tag + ' ');
   };
 
   const handleCopy = (link) => {
@@ -41,34 +42,35 @@ function HomePage() {
   }, [searchText]);
 
   return (
-    <div className="flex flex-col box-border justify-center items-center m-10 p-10 gap-5">
+    <div className="flex flex-col box-border justify-center items-center m-3 p-3 gap-5">
       <h1 className="w-full text-center text-[4.5rem] font-bold">
         เที่ยวไหนดี
       </h1>
-      <label className="flex flex-col w-full justify-center items-center gap-2">
-        <span className="self-start text-[1.2rem]">ค้นหาที่เที่ยว</span>
-        <div className="flex flex-row w-full justify-between items-center gap-10">
-          <input
-            className="text-center w-full p-3 border-b-2 border-transperant shadow-lg hover:shadow-sky-200"
-            type="text"
-            value={searchText}
-            placeholder="หาที่เที่ยวแล้วไปกัน ..."
-            onChange={(e) => {
-              setText(e.target.value);
-            }}
-          />
-        </div>
-      </label>
+      <div className="flex flex-col w-[75%]">
+        <label className="flex flex-col w-full gap-2">
+          ค้นหาที่เที่ยว
+        </label>
+        <input
+              className="text-center p-3 border-b-2 border-transperant shadow-lg hover:shadow-sky-200"
+              type="text"
+              value={searchText}
+              placeholder="หาที่เที่ยวแล้วไปกัน ..."
+              onChange={(e) => {
+                setText(e.target.value);
+              }}
+        />
+      </div>
+
       {location.map((place) => {
         return (
           <div
-            className="flex max-md:flex-col md:flex-row w-full h-fit box-border gap-10 m-10"
+            className="flex flex-col lg:flex-row w-full h-fit box-border gap-5 m-2"
             key={place.eid}
           >
-            <div className="flex max-md:w-full max-lg:w-1/2 max-lg:h-2/3 lg:w-1/2">
-              <img src={place.photos[0]} className="rounded-3xl" />
+            <div className="flex w-full lg:w-2/5 justify-center">
+              <img src={place.photos[0]} className="rounded-3xl w-[25rem] h-[20rem] object-cover "/>
             </div>
-            <div className="flex flex-col max-md:w-full max-lg:w-1/2 lg:w-1/2 justify-start gap-2">
+            <div className="flex w-full lg:w-3/5 flex-col h-fit gap-2">
               <a
                 href={place.url}
                 target="_blank"
@@ -126,7 +128,7 @@ function HomePage() {
                   return (
                     <div key={index}>
                       <img
-                        className="flex rounded-3xl w-[9rem] h-[8rem] hover:w-[15rem] hover:h-[12rem] hover:ease-in-out hover:duration-500"
+                        className="flex rounded-3xl w-[7rem] h-[6rem] hover:w-[9rem] hover:h-[7rem] hover:duration-500"
                         src={photo}
                       />
                     </div>
@@ -134,7 +136,7 @@ function HomePage() {
                 })}
               </div>
               <button
-                className="self-end bg-sky-400 p-3 w-fit h-fit text-white rounded-full hover:scale-[1.1] hover:shadow-xl hover:shadow-sky-200"
+                className="self-end bg-sky-400 p-3 mr-5 w-fit h-fit text-white rounded-full hover:scale-[1.1] hover:shadow-xl hover:shadow-sky-200"
                 onClick={() => {
                   handleCopy(place.url);
                 }}
