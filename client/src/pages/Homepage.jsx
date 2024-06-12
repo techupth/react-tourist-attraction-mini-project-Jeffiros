@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-function Homepage() {
+function HomePage() {
   const [searchText, setText] = useState("");
   const [location, setLocation] = useState([]);
 
@@ -149,4 +149,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default HomePage;
